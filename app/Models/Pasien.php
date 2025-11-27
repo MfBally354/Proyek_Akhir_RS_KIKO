@@ -1,26 +1,29 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+namespace App\Models;
 
-return new class extends Migration
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Pasien extends Model
 {
-    public function up()
-    {
-        Schema::create('pasien', function (Blueprint $table) {
-            $table->id('id_pasien');
-            $table->string('nomor_rm', 20);
-            $table->string('nama_pasien', 100);
-            $table->date('tgl_lahir');
-            $table->enum('jenis_kelamin', ['L', 'P']);
-            $table->text('alamat')->nullable();
-            $table->timestamps();
-        });
-    }
+    use HasFactory;
 
-    public function down()
-    {
-        Schema::dropIfExists('pasien');
-    }
-};
+    // Memberitahu Laravel nama tabel kita
+    protected $table = 'pasien';
+
+    // Memberitahu nama Primary Key
+    protected $primaryKey = 'id_pasien';
+
+    // Kolom mana saja yang boleh diisi
+    protected $fillable = [
+        'nomor_rm', 
+        'nama_pasien', 
+        'tgl_lahir', 
+        'jenis_kelamin', 
+        'alamat'
+    ];
+
+    // Matikan timestamps jika di tabelmu TIDAK ADA kolom created_at & updated_at
+    public $timestamps = false;
+}

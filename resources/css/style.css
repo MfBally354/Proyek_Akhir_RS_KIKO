@@ -1,0 +1,172 @@
+/* --- style.css --- */
+
+/* 1. Reset Dasar & Warna Latar */
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #6a9ac4; /* Warna biru background */
+    margin: 0;
+    padding: 40px;
+}
+
+/* 2. Bagian Header (Search & Tombol Tambah) */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* Kolom Pencarian */
+.search-box {
+    position: relative;
+    width: 40%;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 15px 20px 15px 50px;
+    border-radius: 20px;
+    border: none;
+    background-color: #dbe7f0;
+    font-size: 16px;
+    color: #555;
+    outline: none;
+}
+
+.search-box i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    font-size: 18px;
+}
+
+/* Tombol Tambah Data */
+.btn-add {
+    background-color: #dbe7f0;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-add:hover {
+    background-color: #cce0ee;
+    transform: translateY(-2px);
+}
+
+.btn-add i {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+/* 3. Tabel Data Pasien */
+table {
+    width: 100%;
+    border-collapse: separate; 
+    border-spacing: 0 15px; /* Jarak vertikal antar baris */
+}
+
+/* Header Kolom */
+th {
+    background-color: #dbe7f0;
+    padding: 15px;
+    text-align: left;
+    font-size: 18px;
+    color: #000;
+    font-weight: 600;
+}
+
+/* Header Pill Shape */
+th:first-child { border-radius: 20px 0 0 20px; padding-left: 25px;}
+th:last-child { border-radius: 0 20px 20px 0; }
+
+.header-pill {
+    display: table-cell;
+    background-color: #dbe7f0;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+/* Sel Data */
+td {
+    background-color: #8fbcdb;
+    padding: 20px;
+    color: #222;
+    vertical-align: middle;
+}
+
+/* Baris Data Pill Shape */
+tr.data-row td:first-child { border-radius: 20px 0 0 20px; }
+tr.data-row td:last-child { border-radius: 0 20px 20px 0; }
+
+/* Pemisah Kolom Transparan */
+tr.data-row td {
+    border-right: 10px solid #6a9ac4;
+}
+tr.data-row td:last-child {
+    border-right: none;
+}
+
+/* Info Medis */
+.medis-info strong {
+    display: block;
+    font-size: 16px;
+}
+.medis-info small {
+    color: #444;
+    font-size: 14px;
+}
+
+/* 4. Tombol Aksi */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-action {
+    background-color: #dbe7f0;
+    border: none;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+    font-size: 12px;
+    transition: 0.2s;
+}
+
+.btn-action:hover {
+    background-color: #fff;
+}
+
+.btn-action i {
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.btn-label {
+    font-size: 10px;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
