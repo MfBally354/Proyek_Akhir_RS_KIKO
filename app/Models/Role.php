@@ -1,10 +1,22 @@
 <?php
 
-namespace App\Models;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Role extends Model
+return new class extends Migration
 {
-    //
-}
+    public function up()
+    {
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id('id_role');
+            $table->string('nama_role', 50);
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('roles');
+    }
+};
