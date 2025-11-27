@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasienController; // Panggil controllernya
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['role:admin'])->group(function() {
+    Route::resource('dokter', DokterController::class);
+    Route::resource('jadwal', JadwalController::class);
 });
 
 // Route untuk Halaman Daftar Pasien
