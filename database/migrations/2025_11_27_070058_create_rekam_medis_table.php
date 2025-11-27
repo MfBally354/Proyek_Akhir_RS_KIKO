@@ -6,20 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('rekam_medis', function (Blueprint $table) {
             $table->id();
+            // Relasi ke tabel pasien
+            $table->unsignedBigInteger('patient_id');
+            $table->string('diagnosa');
+            $table->string('resep')->nullable();
+            $table->string('tindakan')->nullable();
             $table->timestamps();
+
+            // Foreign key ke tabel pasien
+            $table->foreign('patient_id')
+                  ->references('id')
+                  ->on('patients')
+                  ->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('rekam_medis');
