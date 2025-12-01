@@ -6,10 +6,16 @@
             SELAMAT DATANG DI MYMEDICAL
         </h2>
 
-        <form style="background:rgba(255,255,255,0.85); padding:20px; border-radius:10px; margin-top:20px;">
-            <input type="text" placeholder="Username" style="width:100%; padding:10px; margin-bottom:10px;">
-            <input type="email" placeholder="Email" style="width:100%; padding:10px; margin-bottom:10px;">
-            <input type="password" placeholder="Password" style="width:100%; padding:10px; margin-bottom:10px;">
+        <!-- FORM LOGIN -->
+        <form action="{{ route('login.process') }}" method="POST"
+              style="background:rgba(255,255,255,0.85); padding:20px; border-radius:10px; margin-top:20px;">
+            @csrf
+
+            <input type="email" name="email" placeholder="Email" required
+                   style="width:100%; padding:10px; margin-bottom:10px;">
+
+            <input type="password" name="password" placeholder="Password" required
+                   style="width:100%; padding:10px; margin-bottom:10px;">
 
             <button style="width:100%; padding:10px; background:#1976d2; color:white; border:none; border-radius:5px;">
                 Masuk
@@ -21,4 +27,3 @@
         </form>
     </div>
 </div>
-
