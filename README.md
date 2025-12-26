@@ -1,59 +1,306 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏥 MYMEDICAL - Sistem Informasi Manajemen Rumah Sakit KIKO
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel](https://img.shields.io/badge/Laravel-12.x-red.svg)
+![PHP](https://img.shields.io/badge/PHP-8.2+-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-## About Laravel
+Sistem Informasi Manajemen Rumah Sakit yang komprehensif untuk mengelola data pasien, dokter, jadwal praktik, dan rekam medis dengan antarmuka yang modern dan user-friendly.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📋 Daftar Isi
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Fitur Utama](#-fitur-utama)
+- [Teknologi](#-teknologi)
+- [Persyaratan Sistem](#-persyaratan-sistem)
+- [Instalasi](#-instalasi)
+- [Konfigurasi](#-konfigurasi)
+- [Penggunaan](#-penggunaan)
+- [Struktur Database](#-struktur-database)
+- [Akses Default](#-akses-default)
+- [Screenshot](#-screenshot)
+- [Kontribusi](#-kontribusi)
+- [Lisensi](#-lisensi)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ✨ Fitur Utama
 
-## Learning Laravel
+### 👨‍💼 Untuk Administrator
+- **Manajemen Pengguna**: Kelola akun perawat dan administrator
+- **Manajemen Dokter**: CRUD data dokter beserta spesialisasi dan kontak
+- **Manajemen Pasien**: Pendaftaran dan pengelolaan data pasien lengkap
+- **Jadwal Praktik**: Atur jadwal praktik dokter per hari dan jam
+- **Dashboard Statistik**: Visualisasi data pasien dan rekam medis (harian, bulanan, tahunan)
+- **Pencarian Global**: Cari data pasien, dokter, dan staff dengan cepat
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 👨‍⚕️ Untuk Perawat
+- **Input Pasien Baru**: Registrasi pasien dengan auto-generate nomor RM
+- **Rekam Medis**: Input diagnosa, keluhan, dan resep obat
+- **Riwayat Inputan**: Lihat rekap data yang pernah diinput
+- **Update Data Pasien**: Edit informasi pasien yang sudah terdaftar
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🔐 Sistem Autentikasi
+- Login dengan email dan password
+- Role-based access control (Admin & Perawat)
+- Auto-assign role berdasarkan domain email (@admin atau @user)
+- Username otomatis dari email
 
-## Laravel Sponsors
+## 🛠 Teknologi
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+**Backend:**
+- Laravel 12.x
+- PHP 8.2+
+- SQLite Database
 
-### Premium Partners
+**Frontend:**
+- Blade Templates
+- Tailwind CSS 4.0
+- Font Awesome 6.4
+- Custom CSS untuk styling tambahan
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+**Libraries:**
+- Laravel Vite Plugin
+- Carbon (Date manipulation)
 
-## Contributing
+## 📦 Persyaratan Sistem
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- PHP >= 8.2
+- Composer
+- Node.js & NPM (untuk asset compilation)
+- SQLite Extension enabled
+- Extensions: OpenSSL, PDO, Mbstring, Tokenizer, XML, Ctype, JSON
 
-## Code of Conduct
+## 🚀 Instalasi
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 1. Clone Repository
 
-## Security Vulnerabilities
+```bash
+git clone <repository-url>
+cd rs-kiko
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 2. Install Dependencies
 
-## License
+```bash
+# Install PHP dependencies
+composer install
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Install Node dependencies
+npm install
+```
+
+### 3. Environment Setup
+
+```bash
+# Copy environment file
+cp .env.example .env
+
+# Generate application key
+php artisan key:generate
+```
+
+### 4. Database Setup
+
+```bash
+# Create SQLite database file
+touch database/database.sqlite
+
+# Run migrations
+php artisan migrate
+
+# Seed database dengan data awal
+php artisan db:seed
+```
+
+### 5. Build Assets
+
+```bash
+# Development
+npm run dev
+
+# Production
+npm run build
+```
+
+### 6. Jalankan Server
+
+```bash
+php artisan serve
+```
+
+Aplikasi akan berjalan di `http://localhost:8000`
+
+## ⚙️ Konfigurasi
+
+### Database Configuration (.env)
+
+```env
+DB_CONNECTION=sqlite
+DB_DATABASE=/path/to/database/db_rs_kiko.sqlite
+```
+
+### Mail Configuration (Optional)
+
+```env
+MAIL_MAILER=log
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+## 📖 Penggunaan
+
+### Registrasi Akun
+
+1. Akses halaman registrasi
+2. Masukkan nama lengkap
+3. **Email harus menggunakan domain khusus:**
+   - `@admin` untuk akun Administrator
+   - `@user` untuk akun Perawat
+4. Masukkan password minimal 6 karakter
+5. Username akan ter-generate otomatis dari email
+
+**Contoh:**
+- Email: `admin@admin` → Role: Administrator
+- Email: `siti@user` → Role: Perawat
+
+### Login
+
+1. Masukkan email dan password
+2. Sistem akan redirect sesuai role:
+   - Admin → Dashboard dengan statistik lengkap
+   - Perawat → Halaman input pasien/rekam medis
+
+### Mengelola Data Pasien
+
+**Tambah Pasien Baru:**
+1. Klik "Tambah Pasien Baru"
+2. Isi formulir (Nomor RM otomatis ter-generate)
+3. Data yang perlu diisi:
+   - Data Pribadi: Nama, NIK, Tanggal Lahir, Jenis Kelamin, Alamat
+   - Data Kesehatan: Golongan Darah, Riwayat Penyakit, Alergi, No. BPJS
+
+**Input Rekam Medis:**
+1. Pilih pasien dari daftar
+2. Klik "Tambah Rekam Medis"
+3. Isi: Dokter, Poli, Tanggal Periksa, Keluhan, Diagnosa, Resep
+
+### Mengelola Dokter & Jadwal
+
+**Tambah Dokter:**
+1. Menu Kelola Data Dokter
+2. Isi: Nama, Spesialisasi, Kontak, Poliklinik
+
+**Atur Jadwal Praktik:**
+1. Menu Kelola Jadwal
+2. Pilih dokter
+3. Tentukan hari, jam mulai, dan jam selesai
+
+## 🗄 Struktur Database
+
+### Tabel Utama
+
+**users**
+- Primary Key: `id_user`
+- Fields: nama_lengkap, username, email, password, id_role
+- Relasi: belongsTo Role
+
+**pasien**
+- Primary Key: `id_pasien`
+- Fields: nomor_rm (unique), nik, nama_pasien, tgl_lahir, jenis_kelamin, golongan_darah, riwayat_penyakit, riwayat_alergi, no_bpjs, alamat
+- Relasi: hasMany RekamMedis
+
+**dokter**
+- Primary Key: `id_dokter`
+- Fields: nama_dokter, spesialisasi, kontak, id_poli
+- Relasi: belongsTo Poli, hasMany Jadwal
+
+**rekam_medis**
+- Primary Key: `id_rekam_medis`
+- Fields: id_pasien, id_poli, id_dokter, id_user_input, tgl_periksa, keluhan, diagnosa, resep_obat
+- Relasi: belongsTo Pasien, Dokter, Poli, User
+
+**jadwals**
+- Primary Key: `id`
+- Fields: dokter_id, hari, jam_mulai, jam_selesai
+- Relasi: belongsTo Dokter
+
+## 🔑 Akses Default
+
+Setelah menjalankan seeder (`php artisan db:seed`), akun berikut tersedia:
+
+### Administrator
+- **Email:** `admin@admin`
+- **Password:** `admin123`
+- **Akses:** Full control semua fitur
+
+### Perawat
+- **Email:** `siti@user`
+- **Password:** `siti123`
+- **Akses:** Input pasien, rekam medis, view data
+
+## 📸 Screenshot
+
+### Halaman Login
+Sistem autentikasi dengan validasi role berbasis email domain.
+
+### Dashboard Admin
+Menampilkan statistik pasien baru dan rekam medis (harian, bulanan, tahunan).
+
+### Form Pasien
+Formulir lengkap dengan auto-generate nomor rekam medis format: `RM-YYYY0001`
+
+### Rekam Medis
+Riwayat lengkap pemeriksaan pasien dengan informasi dokter, poli, dan diagnosa.
+
+## 🤝 Kontribusi
+
+Kontribusi sangat diterima! Untuk berkontribusi:
+
+1. Fork repository ini
+2. Buat branch fitur (`git checkout -b feature/AmazingFeature`)
+3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Buat Pull Request
+
+## 📝 Catatan Penting
+
+- **Nomor Rekam Medis** otomatis ter-generate dengan format `RM-TAHUN-URUT` (contoh: `RM-20250001`)
+- **Username** auto-generate dari bagian sebelum @ pada email
+- **Usia pasien** dihitung otomatis dari tanggal lahir menggunakan Carbon
+- **Validasi email** wajib menggunakan domain `@admin` atau `@user`
+- **Hanya Admin** yang dapat menghapus data pasien dan mengelola akun perawat
+
+## 🐛 Troubleshooting
+
+### Error: "Database file not found"
+```bash
+# Pastikan file database sudah dibuat
+touch database/database.sqlite
+php artisan migrate
+```
+
+### Error: "Permission denied"
+```bash
+# Set permission untuk folder storage dan cache
+chmod -R 775 storage bootstrap/cache
+```
+
+### Assets tidak muncul
+```bash
+# Rebuild assets
+npm run build
+php artisan optimize:clear
+```
+
+## 📄 Lisensi
+
+Proyek ini dilisensikan di bawah [MIT License](https://opensource.org/licenses/MIT).
+
+## 👨‍💻 Developer
+
+Dikembangkan dengan ❤️ menggunakan Laravel Framework
+
+---
+
+**Versi:** 1.0.0  
+**Last Update:** Desember 2025  
+**Framework:** Laravel 12.x
+
+Untuk pertanyaan dan support, silakan buat issue di repository ini.
