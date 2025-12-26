@@ -4,26 +4,38 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Pasien extends Model
 {
     use HasFactory;
 
-    // Memberitahu Laravel nama tabel kita
     protected $table = 'pasien';
-
-    // Memberitahu nama Primary Key
     protected $primaryKey = 'id_pasien';
 
-    // Kolom mana saja yang boleh diisi
     protected $fillable = [
         'nomor_rm', 
+        'nik',
         'nama_pasien', 
         'tgl_lahir', 
         'jenis_kelamin', 
+        'golongan_darah',
+        'riwayat_penyakit',
+        'riwayat_alergi',
+        'no_bpjs',
         'alamat'
     ];
 
-    // Matikan timestamps jika di tabelmu TIDAK ADA kolom created_at & updated_at
-    public $timestamps = false;
+    // 1. Menghitung Usia Otomatis
+    public function getUsiaAttribute()
+    {
+        return Carbon::parse($this->tgl_lahir)->age . ' Tahun';
+    }
+
+    // 2. RELASI KE REKAM MEDIS (INI YANG KURANG TADI)
+    // Artinya: Satu Pasien bisa memiliki Banyak Rekam Medis
+    public function rekamMedis()
+    {
+        return $this->hasMany(RekamMedis::class, 'id_pasien');
+    }
 }

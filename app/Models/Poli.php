@@ -1,22 +1,22 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+namespace App\Models;
 
-return new class extends Migration
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Poli extends Model
 {
-    public function up()
-    {
-        Schema::create('poliklinik', function (Blueprint $table) {
-            $table->id('id_poli');
-            $table->string('nama_poli', 100);
-            $table->timestamps();
-        });
-    }
+    use HasFactory;
 
-    public function down()
+    protected $table = 'poliklinik'; // Sesuai nama tabel di database
+    protected $primaryKey = 'id_poli';
+
+    protected $fillable = ['nama_poli'];
+
+    // Relasi ke Dokter
+    public function dokter()
     {
-        Schema::dropIfExists('poliklinik');
+        return $this->hasMany(Dokter::class, 'id_poli');
     }
-};
+}

@@ -1,22 +1,22 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+namespace App\Models;
 
-return new class extends Migration
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Role extends Model
 {
-    public function up()
-    {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->id('id_role');
-            $table->string('nama_role', 50);
-            $table->timestamps();
-        });
-    }
+    use HasFactory;
 
-    public function down()
+    protected $table = 'roles';
+    protected $primaryKey = 'id_role';
+
+    protected $fillable = ['nama_role'];
+
+    // Relasi: Satu Role dimiliki banyak User
+    public function users()
     {
-        Schema::dropIfExists('roles');
+        return $this->hasMany(User::class, 'id_role');
     }
-};
+}

@@ -1,42 +1,52 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\RekamMedisController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DashboardController;
 
+// --- HALAMAN PUBLIK (Bisa Diakses Siapa Saja) ---
+
+// 1. Redirect Halaman Awal ke /home
 Route::get('/', function () {
-    return redirect('/login');
+    return redirect()->route('home');
 });
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'authenticate'])->name('login.process');
-Route::get('/login-medical', [AuthController::class, 'loginMedical'])->name('login.medical');
-
+// 2. Beranda (Dashboard) kita keluarkan dari middleware auth
+// Agar tamu bisa melihat halaman depan & melakukan pencarian
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// --- JALUR TAMU (KHUSUS YANG BELUM LOGIN) ---
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'authenticate'])->name('login.process');
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'store'])->name('register.store');
 });
 
-Route::get('/pasien/{id}/rekam-medis', [RekamMedisController::class, 'index'])->name('rekam.index');
-Route::get('/pasien/{id}/rekam-medis/create', [RekamMedisController::class, 'create'])->name('rekam.create');
-Route::post('/pasien/{id}/rekam-medis', [RekamMedisController::class, 'store'])->name('rekam.store');
-
-// Route untuk Halaman Daftar Pasien
-Route::get('/pasien', [PasienController::class, 'index'])->name('pasien.index');
-
-// Route dengan login autentikasi umum
+// --- JALUR MEMBER (KHUSUS YANG SUDAH LOGIN) ---
 Route::middleware(['auth'])->group(function () {
-    Route::resource('dokter', DokterController::class);
-    Route::resource('jadwal', JadwalController::class);
-});
+    
+    // Route Logout
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::middleware(['role:admin'])->group(function () {
+    // Profil
+    Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+
+    // Menu Admin/Perawat (CRUD)
+    Route::resource('pasien', PasienController::class);
     Route::resource('dokter', DokterController::class);
     Route::resource('jadwal', JadwalController::class);
+    Route::resource('perawat', \App\Http\Controllers\PerawatController::class);
+
+    // Rekam Medis
+    Route::prefix('rekam-medis')->name('rekam_medis.')->group(function () {
+        Route::get('/riwayat/{id_pasien}', [RekamMedisController::class, 'index'])->name('index');
+        Route::get('/create/{id_pasien}', [RekamMedisController::class, 'create'])->name('create');
+        Route::post('/store/{id_pasien}', [RekamMedisController::class, 'store'])->name('store');
+    });
 });

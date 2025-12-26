@@ -1,38 +1,46 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+namespace App\Models;
 
-return new class extends Migration
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class RekamMedis extends Model
 {
-    public function up()
-    {
-        Schema::create('rekam_medis', function (Blueprint $table) {
-            $table->id('id_rekam_medis');
+    use HasFactory;
 
-            $table->unsignedBigInteger('id_pasien');
-            $table->unsignedBigInteger('id_poli');
-            $table->unsignedBigInteger('id_dokter');
-            $table->unsignedBigInteger('id_user_input');
+    protected $table = 'rekam_medis';
+    protected $primaryKey = 'id_rekam_medis';
 
-            $table->dateTime('tgl_periksa');
-            $table->text('keluhan')->nullable();
-            $table->text('diagnosa')->nullable();
-            $table->text('resep_obat')->nullable();
+    protected $fillable = [
+        'id_pasien', 
+        'id_poli', 
+        'id_dokter', 
+        'id_user_input',
+        'tgl_periksa', 
+        'keluhan', 
+        'diagnosa', 
+        'resep_obat'
+    ];
 
-            $table->timestamps();
-
-            // Foreign keys
-            $table->foreign('id_pasien')->references('id_pasien')->on('pasien')->onDelete('cascade');
-            $table->foreign('id_poli')->references('id_poli')->on('poliklinik')->onDelete('cascade');
-            $table->foreign('id_dokter')->references('id_dokter')->on('dokter')->onDelete('cascade');
-            $table->foreign('id_user_input')->references('id_user')->on('users')->onDelete('cascade');
-        });
+    // Relasi ke tabel lain
+    public function pasien() 
+    { 
+        return $this->belongsTo(Pasien::class, 'id_pasien'); 
     }
-
-    public function down()
-    {
-        Schema::dropIfExists('rekam_medis');
+    
+    public function dokter() 
+    { 
+        return $this->belongsTo(Dokter::class, 'id_dokter'); 
     }
-};
+    
+    public function poli() 
+    { 
+        return $this->belongsTo(Poli::class, 'id_poli'); 
+    }
+    
+    public function userInput() 
+    { 
+        return $this->belongsTo(User::class, 'id_user_input'); 
+    }
+}
